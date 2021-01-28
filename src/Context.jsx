@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import items from './data'
-// import withRoomConsumer from './components/RoomsContainer';
 
 const RoomContext = React.createContext();
 
@@ -43,9 +42,6 @@ class RoomProvider extends Component {
     }
 
 
-    // GETTING DATA FROM THE API
-
-
 
     // THE FORMATDATA FUNCTION -- THE (ITEMS) IS JUST A PARAMETER
     formatData(items){
@@ -69,10 +65,12 @@ class RoomProvider extends Component {
             const room = tempRooms.find(room=>room.slug === slug)
             return room;
         }
+        
 
+        // THE SECTION OF THE HANDLE CHANGE METHOD
         handleChange=(event)=>{
             const target = event.target
-            const value = event.type === "checkbox" ? target.checked : target.value
+            const value = target.type === "checkbox" ? target.checked : target.value
             const name = event.target.name
             // console.log(type,name,value)
             this.setState({
@@ -80,6 +78,8 @@ class RoomProvider extends Component {
             }, this.filterRooms)
         }
 
+
+        // THE SECTION OF THE FILTER METHOD
         filterRooms = ()=>{
             let{rooms, type, capacity, price, minSize, maxSize, breakfast, pets} = this.state
 
@@ -104,6 +104,19 @@ class RoomProvider extends Component {
 
             // FILTER BY PRICE
             tempRooms = tempRooms.filter(room=>room.price <= price);
+
+            // FILTER BY SIZE
+            tempRooms  = tempRooms.filter(room => room.size >= minSize && room.size <= maxSize)
+
+            // FILTER BY BREAKFAST
+            if(breakfast){
+                tempRooms = tempRooms.filter(room => room.breakfast === true)
+            }
+
+            // FILTER BY PETS
+            if(pets){
+                tempRooms = tempRooms.filter(room => room.pets === true)
+            }
 
 
             // CHANGING THE STATE

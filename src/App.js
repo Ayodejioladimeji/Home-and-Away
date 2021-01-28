@@ -3,7 +3,7 @@ import Error from './pages/Error';
 import Home from './pages/Home';
 import Rooms from './pages/Rooms';
 import SingleRoom from './pages/SingleRoom';
-// import "bootstrap/dist/css/bootstrap.min.css"
+
 
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Navbar from './components/Navbar';
