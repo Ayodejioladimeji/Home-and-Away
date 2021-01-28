@@ -1,5 +1,5 @@
 import styled from "styled-components"
-// import defaultImg from '../images/room-1.jpeg'
+
 
 const StyledHero = styled.header
 `
@@ -9,6 +9,9 @@ display: flex;
 align-items: center;
 justify-content: center;
 
+@media screen and (max-width:320px){
+    // width:112%;
+}
 `
 ;
 
